@@ -60,7 +60,6 @@ body::-webkit-scrollbar {
   background-color: var(--bg-color); /* for the blending mode */
   position: relative;
   overflow: hidden;
-  /* background-color: #ff9524; */
 }
 
 .hero-text {
