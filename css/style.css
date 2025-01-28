@@ -57,7 +57,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-color); /* for the blending mode */
+  background-color: var(--bg-color);
   position: relative;
   overflow: hidden;
 }
