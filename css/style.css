@@ -244,7 +244,7 @@ body::-webkit-scrollbar {
 }
 .me {
   width: 100%;
-  font-size: clamp(18px, 1.8vw + 0.01em, 24px); /* from 24px to 21px */
+  font-size: clamp(18px, 1.8vw + 0.01em, 24px);
   letter-spacing: -0.06em;
   line-height: 1.2;
   /* background-color: #fff; */
