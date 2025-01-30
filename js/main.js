@@ -85,6 +85,56 @@ window.addEventListener("scroll", () => {
   heroText.style.transform = `scale(${scaleValue.toFixed(2)})`;
 });
 
+// ANIMATE THE REASON
+const reasonItems = document.querySelectorAll(".content-part");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+      } else {
+        entry.target.style.opacity = 0;
+      }
+    });
+  },
+  { threshold: 0.7 }
+);
+
+reasonItems.forEach((item) => {
+  observer.observe(item);
+});
+
+// ANIMATE THE TRANSITION
+const portfolioContent = document.querySelector(".portfolio-content");
+
+const portfolioObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const sliders = entry.target.querySelectorAll(".slider");
+      if (entry.isIntersecting) {
+        sliders.forEach((slider, idx) => {
+          setTimeout(() => {
+            slider.style.transform = "translateY(-100%)";
+          }, (idx + 1) * 200);
+        });
+        portfolioObserver.unobserve(entry.target);
+        // } else {
+        //   sliders.forEach((slider, idx) => {
+        //     setTimeout(() => {
+        //       slider.style.transform = "translateY(0)";
+        //     }, (sliders.length - idx) * 100);
+        //   });
+      }
+    });
+  },
+  {
+    threshold: 0.4,
+  }
+);
+
+portfolioObserver.observe(portfolioContent);
+
 // ANIMATE THE MARQUEE
 const marqueeContainer = document.querySelectorAll(".marquee-container");
 const marqueeGap = 24;
@@ -108,34 +158,36 @@ function animateMultiMarquee(parentElement, direction) {
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      for (let i = 0; i < element.length; i++) {
-        totalWidth += element[i].getBoundingClientRect().width + marqueeGap;
-      }
-
-      // start the animation
-      let animation = 0;
-
-      function animateMarquee() {
-        if (directionToGo > 0) {
-          parentElement.style.transform = `translateX(${directionToGo * animation - totalWidth}px)`;
-          if (animation < totalWidth) {
-            animation++;
-          } else {
-            animation = 0;
-          }
-        } else {
-          parentElement.style.transform = `translateX(${directionToGo * animation}px)`;
-          if (animation < totalWidth) {
-            animation++;
-          } else {
-            animation = 0;
-          }
+      requestAnimationFrame(() => {
+        for (let i = 0; i < element.length; i++) {
+          totalWidth += element[i].getBoundingClientRect().width + marqueeGap;
         }
+
+        // start the animation
+        let animation = 0;
+
+        function animateMarquee() {
+          if (directionToGo > 0) {
+            parentElement.style.transform = `translateX(${directionToGo * animation - totalWidth}px)`;
+            if (animation < totalWidth) {
+              animation++;
+            } else {
+              animation = 0;
+            }
+          } else {
+            parentElement.style.transform = `translateX(${directionToGo * animation}px)`;
+            if (animation < totalWidth) {
+              animation++;
+            } else {
+              animation = 0;
+            }
+          }
+          requestAnimationFrame(animateMarquee);
+        }
+        console.log("KEEP MOVING");
+        console.log(totalWidth);
         requestAnimationFrame(animateMarquee);
-      }
-      console.log("KEEP MOVING");
-      console.log(totalWidth);
-      requestAnimationFrame(animateMarquee);
+      });
     });
   });
 }

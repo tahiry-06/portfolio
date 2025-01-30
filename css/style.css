@@ -52,6 +52,7 @@ body::-webkit-scrollbar {
 
 .hero {
   height: 70vh;
+  height: 70dvh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -101,13 +102,13 @@ body::-webkit-scrollbar {
   opacity: 0.6;
   transition: opacity 0.3s;
   background: transparent;
+  display: none; /* remove to show */
 }
 
 .music-control:hover {
   opacity: 0.9;
 }
 
-/**/
 .content-part {
   height: 100vh;
   width: 100%;
@@ -115,8 +116,10 @@ body::-webkit-scrollbar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.6s ease-in-out;
   letter-spacing: -0.06em;
+  opacity: 0;
+  transition: all 0.5s ease;
+  will-change: opacity;
 }
 
 .content-part h1 {
@@ -208,11 +211,12 @@ body::-webkit-scrollbar {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(253, 105, 172); */
+  /* background-color: #eee; */
   gap: 40px;
   padding: 50px max(1vw, 12px);
   padding-bottom: 100px;
   position: relative;
+  overflow: hidden;
 }
 
 .presentation {
@@ -300,7 +304,6 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: var(--deep-blue) 4px solid;
   border-radius: 50%;
-  cursor: pointer;
 }
 
 .illustration-element img {
@@ -315,6 +318,8 @@ body::-webkit-scrollbar {
 
 .transition {
   position: absolute;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -324,18 +329,20 @@ body::-webkit-scrollbar {
 .slider {
   height: 100%;
   width: 20%;
-  opacity: 0;
-  /****/
-  transition: all 0.6s ease;
+  opacity: 1;
+  transition: all 0.4s ease;
+  will-change: transform;
+  z-index: 1;
+  background-color: #fff;
 }
-
+/* 
 .slider:nth-child(even) {
   background-color: var(--light-violet);
 }
 
 .slider:nth-child(odd) {
   background-color: var(--light-blue);
-}
+} */
 
 .marquee {
   display: flex;
@@ -344,6 +351,7 @@ body::-webkit-scrollbar {
   max-width: 1200px;
   height: 20vh;
   width: 100%;
+  min-height: 150px;
 }
 
 .static-marquee {
