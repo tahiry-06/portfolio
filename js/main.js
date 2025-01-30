@@ -85,6 +85,64 @@ window.addEventListener("scroll", () => {
   heroText.style.transform = `scale(${scaleValue.toFixed(2)})`;
 });
 
+// ANIMATE THE MARQUEE
+const marqueeContainer = document.querySelectorAll(".marquee-container");
+const marqueeGap = 24;
+
+// duplicate items for seamless transition
+function animateMultiMarquee(parentElement, direction) {
+  // const totalWidth = settings();
+  let directionToGo = direction <= 0 ? -1 : 1;
+  // settings
+  const element = Array.from(parentElement.querySelectorAll("img"));
+  let totalWidth = 0;
+
+  // define the width of each scroller and duplicate items for seamless transition
+
+  element.forEach((item) => {
+    const duplicated = item.cloneNode(true);
+    duplicated.setAttribute("aria-hidden", true);
+    parentElement.appendChild(duplicated);
+    // totalWidth += item.getBoundingClientRect().width + marqueeGap;
+  });
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      for (let i = 0; i < element.length; i++) {
+        totalWidth += element[i].getBoundingClientRect().width + marqueeGap;
+      }
+
+      // start the animation
+      let animation = 0;
+
+      function animateMarquee() {
+        if (directionToGo > 0) {
+          parentElement.style.transform = `translateX(${directionToGo * animation - totalWidth}px)`;
+          if (animation < totalWidth) {
+            animation++;
+          } else {
+            animation = 0;
+          }
+        } else {
+          parentElement.style.transform = `translateX(${directionToGo * animation}px)`;
+          if (animation < totalWidth) {
+            animation++;
+          } else {
+            animation = 0;
+          }
+        }
+        requestAnimationFrame(animateMarquee);
+      }
+      console.log("KEEP MOVING");
+      console.log(totalWidth);
+      requestAnimationFrame(animateMarquee);
+    });
+  });
+}
+
+animateMultiMarquee(marqueeContainer[0], -1);
+animateMultiMarquee(marqueeContainer[1], 1);
+
 // GIFT CONTENT
 const gift = document.querySelector(".gift");
 gift.addEventListener("click", () => {});

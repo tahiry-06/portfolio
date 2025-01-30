@@ -281,7 +281,6 @@ body::-webkit-scrollbar {
   order: 2;
   flex-basis: 50%;
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -292,11 +291,23 @@ body::-webkit-scrollbar {
 }
 
 .illustration-element {
-  /* position: absolute; */
-  height: 500px;
-  width: min(500px, 35vw);
-  background-color: var(--deep-blue);
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  overflow: hidden;
+  border: var(--deep-blue) 4px solid;
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.illustration-element img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.6s ease;
 }
 
 .transition {
@@ -322,9 +333,53 @@ body::-webkit-scrollbar {
 }
 
 .marquee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
   height: 20vh;
   width: 100%;
-  background-color: var(--deep-blue);
+}
+
+.static-marquee {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0));
+}
+
+/* .to-right {
+  transform: translateX(-100%) !important;
+  background-color: #ff4848;
+} */
+
+.marquee-container {
+  position: relative;
+  width: 95%;
+  height: 50px;
+  max-width: 1100px;
+  display: flex;
+  gap: 24px;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.marquee-container img {
+  opacity: 0.25;
+  width: fit-content;
+  height: 50px;
+  object-fit: cover;
 }
 
 .works {
@@ -648,11 +703,22 @@ p.rights {
 }
 
 /*////////////////////////////////////*/
+@media (min-width: 375px) and (max-width: 619px) {
+  .illustration-element {
+    width: 333px;
+    height: 333px;
+    padding-top: 0;
+  }
+}
+
 @media only screen and (max-width: 620px) {
+  .portfolio-content {
+    gap: 25px;
+  }
+
   .portfolio-content,
   .tell-me-more {
     flex-direction: column;
-    gap: 0;
   }
 
   .presentation,
@@ -665,10 +731,10 @@ p.rights {
     order: 1;
   }
 
-  .illustration-element {
+  /* .illustration-element {
     height: 300px;
     width: 300px;
-  }
+  } */
 
   .works,
   .showcase,
