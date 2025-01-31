@@ -119,12 +119,6 @@ const portfolioObserver = new IntersectionObserver(
           }, (idx + 1) * 200);
         });
         portfolioObserver.unobserve(entry.target);
-        // } else {
-        //   sliders.forEach((slider, idx) => {
-        //     setTimeout(() => {
-        //       slider.style.transform = "translateY(0)";
-        //     }, (sliders.length - idx) * 100);
-        //   });
       }
     });
   },
@@ -141,54 +135,58 @@ const marqueeGap = 24;
 
 // duplicate items for seamless transition
 function animateMultiMarquee(parentElement, direction) {
-  // const totalWidth = settings();
   let directionToGo = direction <= 0 ? -1 : 1;
-  // settings
   const element = Array.from(parentElement.querySelectorAll("img"));
   let totalWidth = 0;
 
-  // define the width of each scroller and duplicate items for seamless transition
-
-  element.forEach((item) => {
-    const duplicated = item.cloneNode(true);
-    duplicated.setAttribute("aria-hidden", true);
-    parentElement.appendChild(duplicated);
-    // totalWidth += item.getBoundingClientRect().width + marqueeGap;
+  // Ensure all images are loaded before calculating widths
+  const imagesLoaded = element.map((img) => {
+    return new Promise((resolve) => {
+      if (img.complete) {
+        resolve();
+      } else {
+        img.onload = resolve;
+        img.onerror = resolve;
+      }
+    });
   });
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        for (let i = 0; i < element.length; i++) {
-          totalWidth += element[i].getBoundingClientRect().width + marqueeGap;
-        }
-
-        // start the animation
-        let animation = 0;
-
-        function animateMarquee() {
-          if (directionToGo > 0) {
-            parentElement.style.transform = `translateX(${directionToGo * animation - totalWidth}px)`;
-            if (animation < totalWidth) {
-              animation++;
-            } else {
-              animation = 0;
-            }
-          } else {
-            parentElement.style.transform = `translateX(${directionToGo * animation}px)`;
-            if (animation < totalWidth) {
-              animation++;
-            } else {
-              animation = 0;
-            }
-          }
-          requestAnimationFrame(animateMarquee);
-        }
-        console.log("KEEP MOVING");
-        console.log(totalWidth);
-        requestAnimationFrame(animateMarquee);
-      });
+  Promise.all(imagesLoaded).then(() => {
+    // define the width of each scroller and duplicate items for seamless transition
+    element.forEach((item) => {
+      const duplicated = item.cloneNode(true);
+      duplicated.setAttribute("aria-hidden", true);
+      parentElement.appendChild(duplicated);
+      totalWidth += item.getBoundingClientRect().width + marqueeGap;
     });
+
+    // Store the total width to avoid recalculating
+    const storedTotalWidth = totalWidth;
+
+    // start the animation
+    let animation = 0;
+
+    function animateMarquee() {
+      if (directionToGo > 0) {
+        parentElement.style.transform = `translateX(${directionToGo * animation - storedTotalWidth}px)`;
+        if (animation < storedTotalWidth) {
+          animation++;
+        } else {
+          animation = 0;
+        }
+      } else {
+        parentElement.style.transform = `translateX(${directionToGo * animation}px)`;
+        if (animation < storedTotalWidth) {
+          animation++;
+        } else {
+          animation = 0;
+        }
+      }
+      requestAnimationFrame(animateMarquee);
+    }
+    console.log("KEEP MOVING");
+    console.log(totalWidth);
+    requestAnimationFrame(animateMarquee);
   });
 }
 
