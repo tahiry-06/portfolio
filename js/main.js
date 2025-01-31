@@ -160,8 +160,8 @@ function animateMultiMarquee(parentElement, direction) {
       totalWidth += item.getBoundingClientRect().width + marqueeGap;
     });
 
-    // Store the total width to avoid recalculating
-    const storedTotalWidth = totalWidth;
+    // Round the total width to the nearest integer to avoid sub-pixel issues
+    const storedTotalWidth = Math.round(totalWidth);
 
     // start the animation
     let animation = 0;
@@ -184,8 +184,9 @@ function animateMultiMarquee(parentElement, direction) {
       }
       requestAnimationFrame(animateMarquee);
     }
+    // do not remove console.log please, I keep track with these
     console.log("KEEP MOVING");
-    console.log(totalWidth);
+    console.log(storedTotalWidth);
     requestAnimationFrame(animateMarquee);
   });
 }
