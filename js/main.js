@@ -29,14 +29,25 @@ const divElements = document.querySelectorAll(".text-container div");
 const animatedPart = document.querySelector(".animated-part");
 let delay = 1000;
 let pauseDelay = 1000;
+
 function animateDivs() {
   let currentDiv = divElements[0];
   let parent = currentDiv.parentNode;
-  // start of working code
+
+  // Adjust the container height to fit only the first child
+  function adjustContainerHeight() {
+    animatedPart.style.height = `${
+      currentDiv.getBoundingClientRect().height + currentDiv.getBoundingClientRect().height * 0.07
+    }px`;
+  }
+
+  // Call adjustContainerHeight initially and on window resize
+  adjustContainerHeight();
+  window.addEventListener("resize", adjustContainerHeight);
+
   function animateThenMove() {
     let iteration = 0;
     const interval = setInterval(() => {
-      // working code
       currentDiv.innerText = currentDiv.innerText
         .split("")
         .map((letter, index) => {
@@ -46,16 +57,12 @@ function animateDivs() {
           return letters[Math.floor(Math.random() * 26)];
         })
         .join("");
-      // end of working code
       if (iteration >= currentDiv.dataset.value.length) {
         clearInterval(interval);
-        // This will delay the next animation so we can read the word
         setTimeout(() => {
-          // Move the current span to the end of the parent
           parent.appendChild(currentDiv);
-          // Get the next current span
           currentDiv = parent.firstElementChild;
-          // Starting the next element
+          adjustContainerHeight(); // Adjust height after moving the element
           animateThenMove();
         }, pauseDelay);
       }
@@ -63,12 +70,8 @@ function animateDivs() {
     }, 27);
   }
   requestAnimationFrame(animateThenMove);
-  // LETTERS CONTAINER
-  animatedPart.style.height = `${
-    divElements[0].getBoundingClientRect().height + divElements[0].getBoundingClientRect().height * 0.07
-  }px`;
 }
-// Start the animation immediately, do not forget this
+
 requestAnimationFrame(animateDivs);
 
 // ANIMATE THE HERO SECTION
@@ -193,6 +196,8 @@ function animateMultiMarquee(parentElement, direction) {
 
 animateMultiMarquee(marqueeContainer[0], -1);
 animateMultiMarquee(marqueeContainer[1], 1);
+
+// ANIMATE WORKS CARDS DESCRIPTION
 
 // GIFT CONTENT
 const gift = document.querySelector(".gift");
