@@ -46,7 +46,6 @@ body::-webkit-scrollbar {
   font-family: "Inter", sans-serif;
   margin: 0 auto;
   color: var(--text-color);
-  /* background-color: rgb(204, 171, 247); */
   overflow-x: hidden;
 }
 
@@ -234,7 +233,6 @@ body::-webkit-scrollbar {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* background-color: #eee; */
   gap: 40px;
   padding: 50px max(1vw, 12px);
   padding-bottom: 100px;
@@ -254,7 +252,6 @@ body::-webkit-scrollbar {
   align-items: start;
   justify-content: center;
   gap: 24px;
-  /* background-color: #cdf1ab; */
 }
 
 .presentation-text {
@@ -277,7 +274,6 @@ body::-webkit-scrollbar {
   font-size: clamp(18px, 1.8vw + 0.01em, 24px);
   letter-spacing: -0.06em;
   line-height: 1.2;
-  /* background-color: #fff; */
 }
 
 .call-to-action {
@@ -317,7 +313,6 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
   padding: 0 12px;
-  /* background-color: #15dbe6; */
   position: relative;
 }
 
@@ -420,7 +415,6 @@ body::-webkit-scrollbar {
   gap: 100px;
   letter-spacing: -0.06em;
   padding: 100px max(1vw, 12px);
-  /* background-color: #ff9532; */
 }
 
 .works-description {
@@ -457,7 +451,6 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
   position: relative;
-  /* background-color: #ffea32; */
 }
 
 .category {
@@ -465,7 +458,6 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* background-color: #325bff; */
 }
 
 /*/////////// CARDS HERE //////////////*/
@@ -473,7 +465,6 @@ body::-webkit-scrollbar {
 .cards {
   height: 500px;
   width: 100%;
-  /* background-color: #fb8787; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -498,7 +489,6 @@ body::-webkit-scrollbar {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* box-shadow: 10px 10px 6px rgb(51, 51, 51, 0.2); */
   box-shadow: 0 0 15px 5px rgba(238, 238, 242, 0.35);
   filter: grayscale(75%);
 }
@@ -612,10 +602,6 @@ body::-webkit-scrollbar {
   transform: translate(0, 0);
 }
 
-.cards:has(.card:hover) + .category-description > .main-description {
-  opacity: 1;
-}
-
 .swipe-left-button,
 .swipe-right-button {
   display: none;
@@ -678,35 +664,49 @@ body::-webkit-scrollbar {
 
 .category-description {
   flex-basis: calc(100% / 3);
+  height: 400px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-self: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 50px;
-  /* background-color: lime; */
   transform: translate(-50%, 0);
   transition: all 0.6s cubic-bezier(0.05, 0.43, 0.25, 0.95);
+  position: relative;
+}
+
+.main-description,
+.hover-description {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 20%;
+  left: 0;
+  transition: all 0.4s cubic-bezier(0.05, 0.43, 0.25, 0.95);
 }
 
 .main-description {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
   opacity: 0.4;
   transition: opacity 0.6s cubic-bezier(0.05, 0.43, 0.25, 0.95);
 }
 
-.main-description h1 {
+.hover-description {
+  transform: translate(-25%, 0);
+}
+
+.main-description h1,
+.hover-description h1 {
   max-width: 380px;
   font-size: 36px;
   font-weight: 400;
   line-height: 0.9;
   text-align: start;
+  transform: 0.6s all ease;
 }
 
 .main-description p,
+.hover-description p,
 .help-messages {
   font-size: 18px;
   font-weight: 400;
@@ -737,6 +737,7 @@ body::-webkit-scrollbar {
 
 /*///////////////////////////////////*/
 .footer {
+  margin-top: 10%;
   height: fit-content;
   max-width: 1200px;
   width: 100%;
@@ -944,11 +945,28 @@ p.rights {
 
   .category-description {
     margin-right: 2%;
-    padding: 2%;
-    background-color: rgba(230, 230, 230, 0.25);
-    backdrop-filter: blur(24px);
+    padding: 3%;
+    min-width: 350px;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
     z-index: 2;
     border-radius: 6px;
+  }
+
+  .main-description {
+    width: 300px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .hover-description {
+    left: 7%;
+    width: 300px;
+  }
+
+  .help-messages {
+    color: var(--deep-blue);
+    opacity: 1;
   }
 
   .cards {
@@ -979,6 +997,7 @@ p.rights {
   .main-card:nth-child(8) {
     transform: rotate(0deg) translate(0, 0);
     box-shadow: none;
+    will-change: transform;
   }
 
   .main-card:nth-child(2),
@@ -991,9 +1010,7 @@ p.rights {
     transform: translate(0, -50%);
   }
 
-  .card-wrapper:has(.card:hover) .card:hover,
   .card-wrapper:has(.card:hover) .card:not(.card:hover) {
-    background-color: #eee;
     opacity: 1;
   }
 
@@ -1070,18 +1087,30 @@ p.rights {
 
   /*///////////// CARDS HERE /////////////////*/
 
+  .works {
+    margin-bottom: 20%;
+  }
+
   .category-description {
     margin-right: 2%;
     padding: 2%;
-    background-color: rgba(230, 230, 230, 0.25);
     backdrop-filter: blur(24px);
     z-index: 2;
     border-radius: 6px;
     transform: translate(0, 0);
+    position: relative;
+  }
+
+  .help-messages {
+    display: none;
   }
 
   .main-description {
     opacity: 1;
+  }
+
+  .hover-description {
+    padding: 12px 24px;
   }
 
   .cards {
@@ -1122,7 +1151,6 @@ p.rights {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: red;
   }
 
   .card-wrapper:has(.card:hover) .card:hover,
@@ -1167,7 +1195,7 @@ p.rights {
   }
 
   .swipe-right-button::after {
-    transform: translate(-55%, -50%) rotate(45deg);
+    transform: translate(-65%, -50%) rotate(45deg);
     border: 4px solid var(--deep-blue);
     border-left: none;
     border-bottom: none;
@@ -1237,6 +1265,10 @@ p.rights {
   .footer a {
     font-size: 18px;
   }
+
+  .download-button {
+    flex-direction: column;
+  }
 }
 
 @media only screen and (max-width: 420px) {
@@ -1244,9 +1276,132 @@ p.rights {
     justify-content: center;
   }
 
-  .swipe-left-button,
+  /* .swipe-left-button,
   .swipe-right-button {
     display: none;
     pointer-events: none;
-  }
+  } */
+}
+
+/*//////////////// JAVASCRIPT /////////////////*/
+
+.go-none {
+  display: none;
+}
+
+.hide-description {
+  opacity: 0;
+}
+
+.download,
+.download-choice,
+.coming-soon {
+  position: fixed;
+  z-index: -10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0000005d;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity;
+  transition: 0.3s opacity ease;
+}
+
+.download-content,
+.choice-content,
+.soon-content {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  margin: 12px;
+  padding: 4rem 6rem;
+  max-width: 600px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 0 12px 6px #cacaca;
+  transform: translate(0, -25%);
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: all 0.6s cubic-bezier(0.05, 0.43, 0.25, 0.95);
+}
+
+.download-header,
+.soon-content-header {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.download-description {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.download-text,
+.soon-content-text {
+  text-align: center;
+  font-size: 21px;
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+  font-weight: 300;
+  color: var(--text-color);
+}
+
+.choice-direct,
+.download-item,
+.close {
+  padding: 12px 24px;
+  border-radius: 24px;
+  background-color: var(--deep-blue);
+  color: var(--bg-color);
+  cursor: pointer;
+  letter-spacing: -0.06em;
+}
+
+.blurred {
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.download-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.download-item,
+.choice-direct,
+.choice-gumroad,
+.download-close {
+  flex-basis: 50%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: var(--deep-blue) 3px solid;
+  cursor: pointer;
+}
+
+.choice-gumroad,
+.download-close {
+  color: var(--deep-blue);
+  letter-spacing: -0.06em;
 }
