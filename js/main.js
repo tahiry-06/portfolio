@@ -390,7 +390,7 @@ const choiceContent = document.querySelector(".choice-content");
 const choiceDirect = document.querySelector(".choice-direct");
 const choiceGumroad = document.querySelector(".choice-gumroad");
 
-const directURL = "assets/ressources/elevate-yourself.rar";
+const directURL = "assets/ressources/embrace-the-change.png";
 const gumroadURL = "https://tahir06.gumroad.com/l/elevateYourself";
 
 const gift = document.querySelector(".gift");
