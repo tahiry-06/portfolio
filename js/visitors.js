@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -34,7 +34,17 @@ function countView(ip) {
   const countRef = ref(db, "visitorCount");
 
   // this will only be called once since it is set
-  set(countRef, {
+  // but how to make it list all the viewers?
+  // const count = get(countRef).then((snapshot) => {
+  //   if (snapshot.exists()) {
+  //     viewers = snapshot.val();
+  //     viewers++;
+  //     set(countRef, { [ipString]: viewers });
+  //   } else {
+  //     set(countRef, { [ipString]: 1 });
+  //   }
+  // });
+  update(countRef, {
     [ipString]: viewers + 1,
   });
 
@@ -44,14 +54,12 @@ function countView(ip) {
     if (snapshot.exists()) {
       const data = snapshot.val();
       const viewers = Object.keys(data).length;
-      // console.log(viewers);
+      //   console.log(viewers);
       return viewers;
     } else {
       console.log("No data available");
     }
   });
-
-  // console.log(count);
   return count;
 }
 
