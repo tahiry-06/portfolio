@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
 import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
 
-// Your web app's Firebase configuration
+// Your web app's Firebase configuration (keep it public)
 const firebaseConfig = {
   apiKey: "AIzaSyDQiz0alaXW1LvoPbQZaTBxx3915pfIuAw",
   authDomain: "visitor-counter-b1c47.firebaseapp.com",
@@ -15,68 +15,29 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-/*///////////////////////////////////////////*/
-/*/ visitors /*/
-function getViewersIp(json) {
-  let viewersIp = json.ip;
+// Function to count visitor
+async function countVisitor() {
+  const ipData = await fetch("https://api.ipify.org?format=json").then((res) => res.json());
+  const visitorIp = ipData.ip.replace(/\./g, "-"); // Convert IP to valid Firebase key
 
-  // count viewers with ip
-  countView(viewersIp);
+  const countRef = ref(db, `visitorCount/${visitorIp}`);
+
+  // Check if IP exists
+  const snapshot = await get(countRef);
+  if (!snapshot.exists()) {
+    // New visitor, update the database
+    await update(ref(db, "visitorCount"), { [visitorIp]: true });
+  }
+
+  // Get total unique visitors
+  const totalSnapshot = await get(ref(db, "visitorCount"));
+  if (totalSnapshot.exists()) {
+    const totalVisitors = Object.keys(totalSnapshot.val()).length;
+    document.querySelector(".rights").innerHTML = `2025 Tahiry Niaina. All Rights Reserved. <br/> ${totalVisitors}`;
+  }
 }
 
-function countView(ip) {
-  let viewers = 0;
-  const ipString = ip.split(".").join("-");
-
-  const db = getDatabase(app);
-
-  const countRef = ref(db, "visitorCount");
-
-  // this will only be called once since it is set
-  // but how to make it list all the viewers?
-  // const count = get(countRef).then((snapshot) => {
-  //   if (snapshot.exists()) {
-  //     viewers = snapshot.val();
-  //     viewers++;
-  //     set(countRef, { [ipString]: viewers });
-  //   } else {
-  //     set(countRef, { [ipString]: 1 });
-  //   }
-  // });
-  update(countRef, {
-    [ipString]: viewers + 1,
-  });
-
-  // what is the snapshot here? this is actually used to get and use the data to display
-
-  const count = get(countRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const data = snapshot.val();
-      const viewers = Object.keys(data).length;
-      //   console.log(viewers);
-      return viewers;
-    } else {
-      console.log("No data available");
-    }
-  });
-  return count;
-}
-
-const rights = document.querySelector(".rights");
-
-async function displayView(data) {
-  const count = await countView(data.ip);
-  // console.log(count);
-  rights.innerHTML = `2025 Tahiry Niaina. All Right Reserved. <br/> ${count}`;
-}
-
-async function viewerIp() {
-  const response = await fetch("https://api.ipify.org?format=json&callback=getViewersIp");
-  const data = await response.json();
-
-  getViewersIp(data);
-  displayView(data);
-}
-
-viewerIp();
+// Run the function
+countVisitor();
