@@ -28,7 +28,6 @@ async function setActiveLink() {
   await loadNavbar();
   const linkElement = await getActiveLink();
   linkElement.classList.add("active");
-  console.log(linkElement);
 }
 
 export { setActiveLink };
