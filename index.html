@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tahiry Niaina</title>
+    <title>Tahiry | Home</title>
     <link rel="icon" href="assets/images/favicon.png?v=2" type="image/png" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 
-    <script type="module" src="js/visitors.js" defer></script>
+    <!-- <script type="module" src="js/visitors.js" defer></script> -->
+
     <script src="js/main.js" defer></script>
   </head>
   <body>
@@ -44,30 +46,26 @@
       </div>
       <!-- About Me -->
       <div class="portfolio-content">
-        <div class="transition">
-          <div class="slider slider1"></div>
-          <div class="slider slider2"></div>
-          <div class="slider slider3"></div>
-          <div class="slider slider4"></div>
-          <div class="slider slider5"></div>
-        </div>
-        <div class="presentation">
-          <div class="presentation-text">
-            <h1 class="my-name">Hi, I am Tahiry.</h1>
-            <p class="me">
-              Meaningful stories change perspectives and move people when visions are brought to life through
-              thoughtful, creative solutions.<br />I am a photographer, graphic designer, front-end developer, and sound
-              producer.
-            </p>
+        <div class="portfolio-wrapper">
+          <div class="illustration">
+            <div class="illustration-element">
+              <img id="just-me" src="assets/images/me-hover.jpg" alt="Just me." />
+            </div>
           </div>
-          <div class="call-to-action">
-            <button type="button">Talk to me.</button>
-            <button type="button">Hire me.</button>
-          </div>
-        </div>
-        <div class="illustration">
-          <div class="illustration-element">
-            <img id="just-me" src="assets/images/me-hover.jpg" alt="Just me." />
+
+          <div class="presentation">
+            <div class="presentation-text">
+              <h1 class="my-name">Hi, I am Tahiry.</h1>
+              <p class="me">
+                Meaningful stories change perspectives and move people when visions are brought to life through
+                thoughtful, creative solutions.<br />I am a photographer, graphic designer, front-end developer, and
+                sound producer.
+              </p>
+            </div>
+            <div class="call-to-action">
+              <a href="https://wa.me/261343110277" target="_blank">Say hello.</a>
+              <a href="/about.html">About me.</a>
+            </div>
           </div>
         </div>
       </div>
@@ -177,46 +175,57 @@
       </div>
       <!-- Contact -->
       <div class="footer">
-        <div class="tell-me-more">
-          <div class="tagline"><h1>Unleash your creativity — Let your vision be seen and your voice be heard.</h1></div>
-          <div class="tell-me-button">
-            <button type="button">tell me more.</button>
-          </div>
-        </div>
-        <div class="general-infos">
-          <div class="information contacts">
-            <p>tahiry niaina.</p>
-            <div class="location">
-              <p>Manakambahiny</p>
-              <p>Antananarivo</p>
-              <p>MADAGASCAR</p>
+        <div class="footer-wrapper">
+          <div class="tell-me-more">
+            <div class="tagline">
+              <h1>Unleash your creativity — Let your vision be seen and your voice be heard.</h1>
             </div>
-            <div class="contact">
-              <p>+261 34 31 102 77</p>
-              <p>+261 32 62 876 77</p>
-              <p>tahiriniaina.flavien@gmail.com</p>
+            <div class="tell-me-button">
+              <button type="button">tell me more.</button>
             </div>
           </div>
-          <div class="information interactions">
-            <div class="gift">
-              <div class="left-knot"></div>
-              <div class="right-knot"></div>
-              <div class="top-part"></div>
-              <div class="bottom-part"></div>
-            </div>
 
-            <div class="inter-links">
-              <div class="see-works"><a href="#">See works.</a></div>
-              <div class="go-top"><a href="#">Go to the top.</a></div>
+          <div class="infos">
+            <div class="gitf-wrapper">
+              <a href="" class="gift-link">
+                <div class="gift">
+                  <div class="left-knot"></div>
+                  <div class="right-knot"></div>
+                  <div class="top-part"></div>
+                  <div class="bottom-part"></div>
+                </div>
+              </a>
+              <p class="gift-for-you">gift for you.</p>
+            </div>
+            <div class="general-infos">
+              <div class="information contacts">
+                <p>tahiry niaina.</p>
+                <div class="location">
+                  <p>Manakambahiny</p>
+                  <p>Antananarivo</p>
+                  <p>MADAGASCAR</p>
+                </div>
+                <div class="contact">
+                  <p>+261 34 31 102 77</p>
+                  <p>+261 32 62 876 77</p>
+                  <p>tahiriniaina.flavien@gmail.com</p>
+                </div>
+              </div>
+              <div class="information interactions">
+                <div class="inter-links">
+                  <div class="see-works"><a href="">See works.</a></div>
+                  <div class="go-top"><a href="#">Go to the top.</a></div>
+                </div>
+              </div>
+              <div class="information socials">
+                <div class="instagram"><a href="https://www.instagram.com/_tahiriniaina_6">Instagram.</a></div>
+                <div class="linkedin"><a href="https://www.linkedin.com/in/tahiriniaina/">Linkedin.</a></div>
+                <div class="github"><a href="https://github.com/tahiry-06">Github.</a></div>
+              </div>
             </div>
           </div>
-          <div class="information socials">
-            <div class="instagram"><a href="#">Instagram.</a></div>
-            <div class="linkedin"><a href="#">Linkedin.</a></div>
-            <div class="github"><a href="#">Github.</a></div>
-          </div>
+          <p class="rights">2025 Tahiry Niaina. All Right Reserved.</p>
         </div>
-        <p class="rights">2025 Tahiry Niaina. All Right Reserved.</p>
       </div>
     </div>
 
@@ -228,9 +237,11 @@
       <div class="soon-content">
         <h1 class="soon-content-header">This feature is not yet available.</h1>
         <p class="soon-content-text">It will be operational soon.</p>
-        <div class="close">close.</div>
+        <a href="" class="close"><div>close.</div></a>
       </div>
     </div>
+
+    <div class="navbar-placeholder"></div>
 
     <div class="download">
       <div class="download-content">
@@ -244,17 +255,26 @@
         </div>
         <div class="download-button">
           <!-- <a href="assets/ressources/elevate-yourself/kaizen-mindset.png" download="elevate-yourself"></a> -->
-          <div class="download-item">Receive the gift.</div>
-          <div class="download-close">Decline.</div>
+          <a href="" class="download-item"><div>Receive the gift.</div></a>
+          <a href="" class="download-close"><div>Decline.</div></a>
         </div>
       </div>
     </div>
 
     <div class="download-choice">
       <div class="choice-content">
-        <div class="choice-direct">Receive now.</div>
-        <div class="choice-gumroad">Donate on Gumroad</div>
+        <a href="" class="choice-direct"><div>Receive now.</div></a>
+        <a href="" class="choice-gumroad"><div>Donate on Gumroad</div></a>
       </div>
     </div>
+
+    <script type="module">
+      import { loadNavbar, animateNavbar, test } from "./js/navbar.js";
+      import { setActiveLink } from "./js/track-links.js";
+
+      const whatObj = document.querySelector(".what .process");
+      loadNavbar();
+      animateNavbar(whatObj);
+    </script>
   </body>
 </html>

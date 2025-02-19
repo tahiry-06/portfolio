@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tahiry | Works</title>
+    <link rel="icon" href="assets/images/favicon.png?v=2" type="image/png" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/works.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="nothing-content">
+          <span class="loader"></span>
+          <h1 class="not-404">Not 404.</h1>
+          <h2 class="nothing">Just nothing yet to show here.</h2>
+          <p class="nothing-text">
+            He must be working on something again. You will be updated when everything is ready.
+          </p>
+        </div>
+        <div class="scroll-wrapper">
+          <p class="scroll">scroll.</p>
+          <div class="loader-2"></div>
+        </div>
+      </div>
+      <div class="extra">
+        <p>This is just to show the navigation bar. Have a good one.</p>
+      </div>
+    </div>
+
+    <div class="navbar-placeholder"></div>
+
+    <script type="module">
+      import { loadNavbar, animateNavbar, test } from "./js/navbar.js";
+      import { setActiveLink } from "./js/track-links.js";
+
+      const ref = document.querySelector(".main");
+      loadNavbar();
+      animateNavbar(ref);
+    </script>
+  </body>
+</html>

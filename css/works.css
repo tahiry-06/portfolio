@@ -1,0 +1,251 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: #333;
+  --outline-color: #bbb;
+  --background-color: #fff;
+
+  --deep-blue: #133e7c;
+  --gift-color: #1d5fbe;
+  --light-blue: #15dbe6;
+  --light-violet: #ea00d9;
+  --deep-violet: #711c91;
+
+  --section-header-color: #eeeeee;
+  --section-body-color: #f7f7f7;
+  --section-text-color: #393e46;
+  --section-text-color-light: #929aab;
+
+  --available-txt-color: #557c55;
+  --available-color: #a6cf98;
+  --available-bgc-color: #f2ffe9;
+
+  --not-available-txt-color: #fa7070;
+  --not-available-color: #ffb0b0;
+  --not-available-bgc-color: #ffeef4;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Variable-Font.ttf") format("truetype");
+}
+
+.main,
+.extra {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  font-family: "Inter";
+  letter-spacing: -0.03em;
+
+  position: relative;
+  color: var(--text-color);
+
+  text-align: center;
+}
+
+.main-content {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background-color);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px 0;
+}
+
+.nothing-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 24px 12px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.extra {
+  height: fit-content;
+  margin-bottom: 60px;
+  padding: 24px 12px;
+}
+
+.scroll {
+  color: var(--section-text-color-light);
+}
+
+/* HTML: <div class="loader"></div> 
+.loader-2 {
+  width: 40px;
+  height: 20px;
+  --c: no-repeat radial-gradient(farthest-side, var(--gift-color) 93%, #0000);
+  background: var(--c) 0 0, var(--c) 50% 0;
+  background-size: 8px 8px;
+  position: relative;
+  clip-path: inset(-200% -100% 0 0);
+  animation: l6-0 1.5s linear infinite;
+}
+.loader-2:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: var(--deep-blue);
+  left: -16px;
+  top: 0;
+  animation: l6-1 1.5s linear infinite, l6-2 0.5s cubic-bezier(0, 200, 0.8, 200) infinite;
+}
+.loader-2:after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gift-color);
+  animation: l6-3 1.5s linear infinite;
+}
+@keyframes l6-0 {
+  0%,
+  30% {
+    background-position: 0 0, 50% 0;
+  }
+  33% {
+    background-position: 0 100%, 50% 0;
+  }
+  41%,
+  63% {
+    background-position: 0 0, 50% 0;
+  }
+  66% {
+    background-position: 0 0, 50% 100%;
+  }
+  74%,
+  100% {
+    background-position: 0 0, 50% 0;
+  }
+}
+@keyframes l6-1 {
+  90% {
+    transform: translateY(0);
+  }
+  95% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(15px);
+    left: calc(100% - 8px);
+  }
+}
+@keyframes l6-2 {
+  100% {
+    top: -0.1px;
+  }
+}
+@keyframes l6-3 {
+  0%,
+  80%,
+  100% {
+    transform: translate(0);
+  }
+  90% {
+    transform: translate(26px);
+  }
+}*/
+
+.loader {
+  color: var(--section-text-color-light);
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 78px;
+  opacity: 0.8;
+}
+.loader:before {
+  content: "{";
+  display: inline-block;
+  animation: pulse 0.4s alternate infinite ease-in-out;
+}
+.loader:after {
+  content: "}";
+  display: inline-block;
+  animation: pulse 0.4s 0.3s alternate infinite ease-in-out;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+.loader-2 {
+  width: 48px;
+  height: 78px;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid var(--gift-color);
+  margin: auto;
+  border-radius: 50% 50% 50% 50% / 25% 25% 25% 25%;
+}
+.loader-2::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--gift-color);
+  border-radius: 10px;
+  animation: scrollDown 1.5s linear infinite;
+}
+@keyframes scrollDown {
+  0% {
+    top: 15px;
+    height: 4px;
+    opacity: 1;
+  }
+  33% {
+    top: 15px;
+    height: 40px;
+  }
+  66% {
+    top: 50px;
+    height: 10px;
+    opacity: 1;
+  }
+  100% {
+    top: 56px;
+    height: 4px;
+    opacity: 0;
+  }
+}
