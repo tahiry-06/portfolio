@@ -3,6 +3,7 @@
 import { loadNavbar } from "./navbar.js";
 
 const path = window.location.pathname;
+console.log(path);
 const links = {
   "/": "home-link",
   "/index.html": "home-link",

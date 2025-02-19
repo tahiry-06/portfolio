@@ -29,7 +29,7 @@ function onLoad() {
 
 async function animateNavbar(ref) {
   await loadNavbar();
-  await setActiveLink();
+  // await setActiveLink();
   const elements = await onLoad();
 
   const navbar = elements.get("navbar");
