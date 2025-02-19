@@ -109,28 +109,28 @@ reasonItems.forEach((item) => {
 });
 
 // ANIMATE THE TRANSITION
-const portfolioContent = document.querySelector(".portfolio-content");
+// const portfolioContent = document.querySelector(".portfolio-content");
 
-const portfolioObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      const sliders = entry.target.querySelectorAll(".slider");
-      if (entry.isIntersecting) {
-        sliders.forEach((slider, idx) => {
-          setTimeout(() => {
-            slider.style.transform = "translateY(-100%)";
-          }, (idx + 1) * 200);
-        });
-        portfolioObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.4,
-  }
-);
+// const portfolioObserver = new IntersectionObserver(
+//   (entries) => {
+//     entries.forEach((entry) => {
+//       const sliders = entry.target.querySelectorAll(".slider");
+//       if (entry.isIntersecting) {
+//         sliders.forEach((slider, idx) => {
+//           setTimeout(() => {
+//             slider.style.transform = "translateY(-100%)";
+//           }, (idx + 1) * 200);
+//         });
+//         portfolioObserver.unobserve(entry.target);
+//       }
+//     });
+//   },
+//   {
+//     threshold: 0.4,
+//   }
+// );
 
-portfolioObserver.observe(portfolioContent);
+// portfolioObserver.observe(portfolioContent);
 
 // ANIMATE THE MARQUEE
 const marqueeContainer = document.querySelectorAll(".marquee-container");
@@ -393,18 +393,23 @@ const choiceGumroad = document.querySelector(".choice-gumroad");
 const directURL = "assets/ressources/elevate-yourself.zip";
 const gumroadURL = "https://tahir06.gumroad.com/l/elevateYourself";
 
-const gift = document.querySelector(".gift");
-gift.addEventListener("click", () => {
+const gift = document.querySelector(".gift-link");
+gift.addEventListener("click", (e) => {
+  e.preventDefault();
   mainView.classList.add("blurred");
   document.body.style.overflow = "hidden";
   downloadContent.style.transform = "translate(0, 0)";
   downloadContent.style.opacity = 1;
   download.style.opacity = 1;
   download.style.zIndex = 9999;
+  receive.focus();
+  navbar.classList.add("blurred");
 });
 
-decline.addEventListener("click", () => {
+decline.addEventListener("click", (e) => {
+  e.preventDefault();
   mainView.classList.remove("blurred");
+  // navbar.classList.remove("blurred");
   document.body.style.overflow = "visible";
   downloadContent.style.transform = "translate(0, -25%)";
   downloadContent.style.opacity = 0;
@@ -414,7 +419,11 @@ decline.addEventListener("click", () => {
   }, 200);
 });
 
-receive.addEventListener("click", openChoice);
+receive.addEventListener("click", (e) => {
+  e.preventDefault();
+  openChoice();
+  choiceGumroad.focus();
+});
 
 function openChoice() {
   download.classList.add("blurred");
@@ -434,8 +443,9 @@ function downloadFile(url) {
   document.body.removeChild(link);
 }
 
-choiceDirect.addEventListener("click", () => {
+choiceDirect.addEventListener("click", (e) => {
   downloadFile(directURL);
+  e.preventDefault();
   setTimeout(() => {
     download.classList.remove("blurred");
     choiceContent.style.transform = "translate(0, -25%)";
@@ -445,6 +455,7 @@ choiceDirect.addEventListener("click", () => {
       downloadChoice.style.zIndex = -9999;
     }, 200);
     mainView.classList.remove("blurred");
+    // navbar.classList.remove("blurred");
     document.body.style.overflow = "visible";
     downloadContent.style.transform = "translate(0, -25%)";
     downloadContent.style.opacity = 0;
@@ -455,8 +466,9 @@ choiceDirect.addEventListener("click", () => {
   }, 1000);
 });
 
-choiceGumroad.addEventListener("click", () => {
+choiceGumroad.addEventListener("click", (e) => {
   window.open(gumroadURL, "_blank");
+  e.preventDefault();
   setTimeout(() => {
     download.classList.remove("blurred");
     choiceContent.style.transform = "translate(0, -25%)";
@@ -466,6 +478,7 @@ choiceGumroad.addEventListener("click", () => {
       downloadChoice.style.zIndex = -9999;
     }, 200);
     mainView.classList.remove("blurred");
+    // navbar.classList.remove("blurred");
     document.body.style.overflow = "visible";
     downloadContent.style.transform = "translate(0, -25%)";
     downloadContent.style.opacity = 0;
@@ -484,7 +497,7 @@ const close = document.querySelector(".close");
 const mainView = document.querySelector(".main");
 
 const allButtons = [
-  ...document.querySelectorAll(".call-to-action > button"),
+  // ...document.querySelectorAll(".call-to-action > button"),
   document.querySelector(".see-more > button"),
   document.querySelector(".tell-me-button > button"),
 ];
@@ -492,15 +505,19 @@ const allButtons = [
 allButtons.forEach((button) => {
   button.addEventListener("click", () => {
     mainView.classList.add("blurred");
+    // navbar.classList.add("blurred");
     document.body.style.overflow = "hidden";
     soonContent.style.transform = "translate(0, 0)";
     soonContent.style.opacity = 1;
     comingSoon.style.opacity = 1;
     comingSoon.style.zIndex = 9999;
+    close.focus();
   });
 
-  close.addEventListener("click", () => {
+  close.addEventListener("click", (e) => {
+    e.preventDefault();
     mainView.classList.remove("blurred");
+    // navbar.classList.remove("blurred");
     document.body.style.overflow = "visible";
     soonContent.style.transform = "translate(0, -25%)";
     soonContent.style.opacity = 0;

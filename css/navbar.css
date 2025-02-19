@@ -1,0 +1,128 @@
+.navbar {
+  position: fixed;
+  max-width: 1100px;
+  width: 90%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -80px);
+  margin-top: 12px;
+  padding: 12px 36px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 48px;
+  z-index: 100;
+  background-color: var(--background-color);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
+
+  transition: all 0.6s ease;
+  will-change: transform;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: 700;
+  font-family: "Inter";
+  letter-spacing: -0.03em;
+}
+
+.navbar .menus {
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+}
+
+.navbar .menus a {
+  color: var(--section-text-color-light);
+  transition: all 0.6s ease;
+}
+
+.navbar .menus a:hover {
+  color: var(--section-text-color);
+}
+
+.navbar .menus a.active {
+  color: var(--deep-blue);
+}
+
+.hamburger {
+  display: none;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo {
+  height: 32px;
+  width: 32px;
+  background-color: var(--gift-color);
+  border-radius: 50%;
+}
+
+a .logo-title {
+  color: var(--text-color);
+}
+
+@media only screen and (max-width: 620px) {
+  .navbar .menus {
+    /* display: none; */
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    right: 36px;
+    top: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+    transition: all 0.6s ease;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .navbar .menu-show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .navbar .menus a {
+    text-align: center;
+    width: 150px;
+    padding: 12px 24px;
+    background-color: var(--section-body-color);
+    border-bottom: 1px var(--section-text-color-light) solid;
+  }
+
+  .navbar .menus a:last-child {
+    border-bottom: none;
+  }
+
+  .navbar .menus a:hover {
+    background-color: var(--section-header-color);
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .line {
+    width: 32px;
+    height: 4px;
+    background-color: var(--deep-blue);
+    border-radius: 1px;
+    border-radius: 4px;
+  }
+}
