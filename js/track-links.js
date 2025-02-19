@@ -3,7 +3,7 @@
 import { loadNavbar } from "./navbar.js";
 
 const path = window.location.pathname;
-console.log(path);
+// console.log(path);
 const links = {
   "/portfolio/": "home-link",
   "/portfolio/index.html": "home-link",
@@ -11,7 +11,7 @@ const links = {
   "/portfolio/about.html": "about-link",
 };
 const activeLinkId = links[path];
-console.log(activeLinkId);
+// console.log(activeLinkId);
 
 function getActiveLink() {
   return new Promise((resolve, reject) => {
