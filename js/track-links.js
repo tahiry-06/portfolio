@@ -5,10 +5,10 @@ import { loadNavbar } from "./navbar.js";
 const path = window.location.pathname;
 console.log(path);
 const links = {
-  "/": "home-link",
-  "/index.html": "home-link",
-  "/works.html": "works-link",
-  "/about.html": "about-link",
+  "/portfolio/": "home-link",
+  "/portfolio/index.html": "home-link",
+  "/portfolio/works.html": "works-link",
+  "/portfolio/about.html": "about-link",
 };
 const activeLinkId = links[path];
 console.log(activeLinkId);
