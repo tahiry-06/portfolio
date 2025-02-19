@@ -1,27 +1,27 @@
 // AUDIO
-window.onload = () => {
-  const backgroundMusic = new Audio("assets/audio/background.mp3");
-  backgroundMusic.loop = true;
-  backgroundMusic.volume = 0.25;
+// window.onload = () => {
+//   const backgroundMusic = new Audio("assets/audio/background.mp3");
+//   backgroundMusic.loop = true;
+//   backgroundMusic.volume = 0.25;
 
-  const musicBtn = document.querySelector(".music-control");
+//   const musicBtn = document.querySelector(".music-control");
 
-  // Check if page is fully loaded
-  if (document.readyState === "complete") {
-    // Due to browser policies, we need user interaction
-    musicBtn.addEventListener("click", () => {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
-        musicBtn.innerHTML = "Sound off";
-      } else {
-        backgroundMusic.pause();
-        musicBtn.innerHTML = "Sound on";
-      }
-    });
-  }
-  // Auto-trigger first play
-  //musicBtn.click();
-};
+//   // Check if page is fully loaded
+//   if (document.readyState === "complete") {
+//     // Due to browser policies, we need user interaction
+//     musicBtn.addEventListener("click", () => {
+//       if (backgroundMusic.paused) {
+//         backgroundMusic.play();
+//         musicBtn.innerHTML = "Sound off";
+//       } else {
+//         backgroundMusic.pause();
+//         musicBtn.innerHTML = "Sound on";
+//       }
+//     });
+//   }
+//   // Auto-trigger first play
+//   //musicBtn.click();
+// };
 
 // ANIMATION of 4 KEYWORDS
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

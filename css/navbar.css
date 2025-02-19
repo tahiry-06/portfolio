@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Variable-Font.ttf") format("truetype");
+}
+
 .navbar {
   position: fixed;
   max-width: 1100px;
@@ -7,6 +12,7 @@
   transform: translate(-50%, -80px);
   margin-top: 12px;
   padding: 12px 36px;
+  font-family: "Inter";
 
   display: flex;
   flex-direction: row;
