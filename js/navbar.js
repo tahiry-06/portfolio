@@ -3,7 +3,7 @@
 import { setActiveLink } from "./track-links.js";
 
 async function loadNavbar() {
-  const response = await fetch("https://tahiry-06.github.io/portfolio/navbar.html");
+  const response = await fetch("../navbar.html");
   const navbarHTML = await response.text();
 
   document.body.querySelector(".navbar-placeholder").innerHTML = navbarHTML;
@@ -44,7 +44,6 @@ async function animateNavbar(ref) {
       console.log("SOME PROBLEM HERE");
     }
   });
-
   hamburger.addEventListener("click", () => {
     navbarMenus.classList.toggle("menu-show");
   });
