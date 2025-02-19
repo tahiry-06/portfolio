@@ -10,6 +10,7 @@ const links = {
   "/about.html": "about-link",
 };
 const activeLinkId = links[path];
+console.log(activeLinkId);
 
 function getActiveLink() {
   return new Promise((resolve, reject) => {
@@ -26,7 +27,7 @@ async function setActiveLink() {
   await loadNavbar();
   const linkElement = await getActiveLink();
   linkElement.classList.add("active");
-  // console.log(linkElement);
+  console.log(linkElement);
 }
 
 export { setActiveLink };
