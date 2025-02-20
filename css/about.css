@@ -678,6 +678,7 @@ span.ok {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-bottom: 60px;
 }
 
 .references-section {
