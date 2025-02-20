@@ -36,10 +36,10 @@
   src: url("../fonts/Inter-Variable-Font.ttf") format("truetype");
 }
 
-@font-face {
+/* @font-face {
   font-family: "Emoji";
   src: url("../fonts/Noto-Emoji.ttf") format("truetype");
-}
+} */
 
 @font-face {
   font-family: "Ubuntu";
@@ -175,7 +175,9 @@
 }
 
 span.flag {
-  font-family: "Emoji";
+  font-family: "Noto Color Emoji", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .availability-badge {
